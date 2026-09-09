@@ -8,3 +8,4 @@ pub use error::AppError;
 pub use extractors::PathUuid;
 pub use pagination::{PaginatedResponse, Pagination, PaginationQuery};
 pub use response::{ApiResponse, ok, paginated};
+pub use validation::FieldError;

@@ -36,6 +36,8 @@ pub async fn get_by_id(pool: &PgPool, id: Uuid) -> Result<UserResponseDto, AppEr
 }
 
 pub async fn create(pool: &PgPool, dto: CreateUserDto) -> Result<UserResponseDto, AppError> {
+    dto.validate()?;
+
     let id = Uuid::new_v4();
 
     let password_hash = hash_password(&dto.password).map_err(|_| AppError::Internal)?;
@@ -57,6 +59,8 @@ pub async fn update(
     id: Uuid,
     dto: UpdateUserDto,
 ) -> Result<UserResponseDto, AppError> {
+    dto.validate()?;
+
     let password_hash = match dto.password {
         Some(password) => Some(hash_password(&password).map_err(|_| AppError::Internal)?),
         None => None,
