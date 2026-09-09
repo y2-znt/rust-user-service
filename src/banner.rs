@@ -17,11 +17,16 @@ pub fn print(host: &str, port: u16) {
 
     println!(
         "{ORANGE}{FERRIS}{RESET}
-{CYAN}╭──────────────────────────────────────────╮{RESET}
-{CYAN}│{RESET}  {BOLD}rust-user-service{RESET}                       {CYAN}│{RESET}
-{CYAN}│{RESET}  {DIM}listening on{RESET} {BOLD}{listen:<26}{RESET} {CYAN}│{RESET}
-{CYAN}│{RESET}  {DIM}health{RESET}        {CYAN}GET /health{RESET}               {CYAN}│{RESET}
-{CYAN}╰──────────────────────────────────────────╯{RESET}
+{CYAN}╭──────────────────────────────────────────────╮{RESET}
+{CYAN}│{RESET}  {BOLD}rust-user-service{RESET}                           {CYAN}│{RESET}
+{CYAN}│{RESET}  {DIM}listening on{RESET} {BOLD}{listen:<28}{RESET} {CYAN}│{RESET}
+{CYAN}│{RESET}  {DIM}health{RESET}        {CYAN}GET /health{RESET}                   {CYAN}│{RESET}
+{CYAN}│{RESET}  {DIM}users{RESET}         {CYAN}GET /users{RESET}                    {CYAN}│{RESET}
+{CYAN}│{RESET}                {CYAN}POST /users{RESET}                   {CYAN}│{RESET}
+{CYAN}│{RESET}                {CYAN}GET /users/{{id}}{RESET}               {CYAN}│{RESET}
+{CYAN}│{RESET}                {CYAN}PATCH /users/{{id}}{RESET}             {CYAN}│{RESET}
+{CYAN}│{RESET}                {CYAN}DELETE /users/{{id}}{RESET}            {CYAN}│{RESET}
+{CYAN}╰──────────────────────────────────────────────╯{RESET}
 "
     );
 }

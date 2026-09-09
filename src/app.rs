@@ -1,7 +1,7 @@
 use axum::Router;
 use sqlx::PgPool;
 
-use crate::health;
+use crate::{health, users};
 
 #[derive(Clone)]
 pub struct AppState {
@@ -13,5 +13,6 @@ pub fn create_app(pool: PgPool) -> Router {
 
     Router::new()
         .nest("/health", health::routes())
+        .nest("/users", users::routes())
         .with_state(state)
 }

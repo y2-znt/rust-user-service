@@ -1,8 +1,11 @@
+mod api;
 mod app;
+mod auth;
 mod banner;
 mod config;
 mod db;
 mod health;
+mod users;
 
 use config::Config;
 use db::create_pool;
