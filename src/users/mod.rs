@@ -1,4 +1,4 @@
-mod user_dto;
+mod dto;
 mod user_handler;
 mod user_model;
 mod user_repository;
