@@ -40,7 +40,7 @@ pub async fn create(pool: &PgPool, dto: CreateUserDto) -> Result<UserResponseDto
 
     let id = Uuid::new_v4();
 
-    let password_hash = hash_password(&dto.password).map_err(|_| AppError::Internal)?;
+    let password_hash = hash_password_blocking(dto.password).await?;
 
     let user =
         match user_repository::create(pool, id, &dto.email, &dto.username, &password_hash).await {
@@ -62,7 +62,7 @@ pub async fn update(
     dto.validate()?;
 
     let password_hash = match dto.password {
-        Some(password) => Some(hash_password(&password).map_err(|_| AppError::Internal)?),
+        Some(password) => Some(hash_password_blocking(password).await?),
         None => None,
     };
 
@@ -98,4 +98,11 @@ pub async fn delete(pool: &PgPool, id: Uuid) -> Result<(), AppError> {
     }
 
     Ok(())
+}
+
+async fn hash_password_blocking(password: String) -> Result<String, AppError> {
+    tokio::task::spawn_blocking(move || hash_password(&password))
+        .await
+        .map_err(|_| AppError::Internal)?
+        .map_err(|_| AppError::Internal)
 }

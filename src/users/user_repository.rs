@@ -8,7 +8,7 @@ pub async fn find_all(pool: &PgPool, limit: i64, offset: i64) -> Result<Vec<User
         r#"
         SELECT id, email, username, password_hash, role, created_at, updated_at
         FROM users
-        ORDER BY created_at DESC
+        ORDER BY created_at DESC, id DESC
         LIMIT $1
         OFFSET $2
         "#,
