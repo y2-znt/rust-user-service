@@ -1,8 +1,8 @@
+mod api;
 mod app;
 mod banner;
 mod config;
 mod db;
-mod error;
 mod health;
 mod users;
 
