@@ -2,7 +2,9 @@ mod app;
 mod banner;
 mod config;
 mod db;
+mod error;
 mod health;
+mod users;
 
 use config::Config;
 use db::create_pool;
